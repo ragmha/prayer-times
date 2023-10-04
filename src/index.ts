@@ -40,7 +40,7 @@ const isPrayerTimesResponse = (data: any): data is PrayerTimeResponse => {
   )
 }
 
-const getPrayerTimes = async (
+export const getPrayerTimes = async (
   city: string,
   country: string,
   method: number
@@ -78,7 +78,7 @@ const notify = (prayerTime: PrayerTime) => {
   notifier.notify({
     title: "Prayer Time",
     message: `It's time for ${prayerTime.name} prayer (${prayerTime.time})`,
-    icon: path.join(__dirname, "prayer.jpg"),
+    icon: path.join(__dirname, "../src", "prayer.jpg"),
     sound: true,
     wait: true,
   })
@@ -86,6 +86,7 @@ const notify = (prayerTime: PrayerTime) => {
 
 ;(async () => {
   console.log("Running the server")
+
   try {
     const city = "Helsinki"
     const country = "Finland"
