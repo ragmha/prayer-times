@@ -68,7 +68,7 @@ export const getPrayerTimes = async (
 
   return prayers.map((prayer) => ({
     name: prayer,
-    time: DateTime.fromISO(timings[prayer], {
+    time: DateTime.fromFormat(timings[prayer], "HH:mm", {
       zone: "Europe/Helsinki",
     }).toLocaleString(DateTime.TIME_SIMPLE),
   }))
