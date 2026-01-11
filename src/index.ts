@@ -88,9 +88,19 @@ const notify = (prayerTime: PrayerTime) => {
   console.log("Running the server")
 
   try {
-    const city = "Helsinki"
-    const country = "Finland"
-    const method = 2
+    const city =
+      process.argv[2] ||
+      process.env.PRAYER_CITY ||
+      "Helsinki"
+    const country =
+      process.argv[3] ||
+      process.env.PRAYER_COUNTRY ||
+      "Finland"
+    const methodInput =
+      process.argv[4] ||
+      process.env.PRAYER_METHOD
+    const parsedMethod = methodInput ? parseInt(methodInput, 10) : NaN
+    const method = Number.isNaN(parsedMethod) ? 2 : parsedMethod
 
     const prayerTimes = await getPrayerTimes(city, country, method)
 
