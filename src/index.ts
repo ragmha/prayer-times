@@ -45,7 +45,7 @@ export const getPrayerTimes = async (
   country: string,
   method: number
 ): Promise<PrayerTime[]> => {
-  const url = new URL("http://api.aladhan.com/v1/timingsByCity")
+  const url = new URL("https://api.aladhan.com/v1/timingsByCity")
   url.searchParams.append("city", city)
   url.searchParams.append("country", country)
   url.searchParams.append("method", method.toString())
