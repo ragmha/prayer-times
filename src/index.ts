@@ -96,9 +96,13 @@ const notify = (prayerTime: PrayerTime) => {
 
     // Notify when it's time for each prayer
     prayerTimes.forEach((prayerTime) => {
-      const prayerTimeDateTime = DateTime.fromISO(prayerTime.time, {
-        zone: "Europe/Helsinki",
-      })
+      const today = DateTime.now().setZone("Europe/Helsinki")
+      const dateTimeString = `${today.toISODate()} ${prayerTime.time}`
+      const prayerTimeDateTime = DateTime.fromFormat(
+        dateTimeString,
+        "yyyy-LL-dd h:mm a",
+        { zone: "Europe/Helsinki" }
+      )
 
       const nowDateTime = DateTime.now().setZone("Europe/Helsinki")
 
