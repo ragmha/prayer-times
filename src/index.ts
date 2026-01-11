@@ -116,17 +116,18 @@ const notify = (prayerTime: PrayerTime) => {
 
       const nowDateTime = DateTime.now().setZone("Europe/Helsinki")
 
+      // Skip scheduling if this prayer time has already passed today.
       if (prayerTimeDateTime <= nowDateTime) {
-        notify(prayerTime)
-      } else {
-        const timeDiff = prayerTimeDateTime.diff(nowDateTime, "milliseconds")
-
-        setTimeout(() => {
-          if (DateTime.now().setZone("Europe/Helsinki") >= prayerTimeDateTime) {
-            notify(prayerTime)
-          }
-        }, timeDiff.milliseconds)
+        return
       }
+
+      const timeDiff = prayerTimeDateTime.diff(nowDateTime, "milliseconds")
+
+      setTimeout(() => {
+        if (DateTime.now().setZone("Europe/Helsinki") >= prayerTimeDateTime) {
+          notify(prayerTime)
+        }
+      }, timeDiff.milliseconds)
     })
 
     return {
